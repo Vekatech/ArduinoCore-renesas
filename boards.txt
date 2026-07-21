@@ -51,7 +51,67 @@ portenta_c33.debug.server.openocd.scripts.1={programmer.transport_script}
 portenta_c33.debug.server.openocd.scripts.2={runtime.platform.path}/debugger/R7FA6M5BH.cfg
 portenta_c33.debug.svd_file={runtime.platform.path}/svd/R7FA6M5BH.svd
 
+##############################################################
+### VK Boards ###
+##############################################################
 
+vkra4m2nano.name=VK-RA4M2-NANO
+vkra4m2nano.build.core=arduino
+vkra4m2nano.build.crossprefix=arm-none-eabi-
+vkra4m2nano.build.compiler_path={runtime.tools.arm-none-eabi-gcc-7-2017q4.path}/bin/
+
+vkra4m2nano.build.variant=VK_RA4M2_NANO
+vkra4m2nano.build.mcu=cortex-m33
+vkra4m2nano.build.architecture=cortex-m33
+vkra4m2nano.build.fpu=-mfpu=fpv5-sp-d16
+vkra4m2nano.build.float-abi=-mfloat-abi=hard
+
+vkra4m2nano.build.board=vkra4m2nano
+vkra4m2nano.build.defines=-DF_CPU=100000000 -DARDUINO_VK_RA4M2_NANO
+vkra4m2nano.vid.0=0x2341
+vkra4m2nano.pid.0=0x0069
+vkra4m2nano.vid.1=0x2341
+vkra4m2nano.pid.1=0x0369
+vkra4m2nano.upload_port.0.vid=0x2341
+vkra4m2nano.upload_port.0.pid=0x0069
+vkra4m2nano.upload_port.1.vid=0x2341
+vkra4m2nano.upload_port.1.pid=0x0369
+
+vkra4m2nano.compiler.fsp.defines={build.variant.path}/defines.txt
+vkra4m2nano.compiler.fsp.ldflags={build.variant.path}/ldflags.txt
+vkra4m2nano.compiler.fsp.cflags=-mthumb "@{compiler.fsp.defines}"
+vkra4m2nano.compiler.fsp.cxxflags=-mthumb "@{compiler.fsp.defines}"
+vkra4m2nano.compiler.tinyusb.cflags=-DCFG_TUSB_MCU=OPT_MCU_RAXXX
+vkra4m2nano.compiler.tinyusb.cxxflags=-DCFG_TUSB_MCU=OPT_MCU_RAXXX
+vkra4m2nano.compiler.fsp.includes={build.variant.path}/includes.txt
+vkra4m2nano.compiler.fsp.extra_ldflags=-lstdc++ -lsupc++ -lm -lc -lgcc -lnosys
+vkra4m2nano.compiler.fsp="{build.variant.path}/libs/libfsp.a"
+
+vkra4m2nano.upload.tool=dfu-util
+vkra4m2nano.upload.tool.default=dfu-util
+vkra4m2nano.upload.protocol=
+vkra4m2nano.upload.transport=
+vkra4m2nano.upload.vid=0x2341
+vkra4m2nano.upload.pid=0x0369
+vkra4m2nano.upload.address=0x00010000
+vkra4m2nano.upload.interface=0
+vkra4m2nano.upload.use_1200bps_touch=false
+vkra4m2nano.upload.wait_for_upload_port=false
+vkra4m2nano.upload.native_usb=true
+vkra4m2nano.upload.maximum_size=458752
+vkra4m2nano.upload.maximum_data_size=131072
+
+vkra4m2nano.debug.server.openocd.scripts.0=interface/{programmer.protocol}.cfg
+vkra4m2nano.debug.server.openocd.scripts.1={programmer.transport_script}
+vkra4m2nano.debug.server.openocd.scripts.2={runtime.platform.path}/debugger/R7FA4M2AD.cfg
+vkra4m2nano.debug.svd_file={runtime.platform.path}/svd/R7FA4M2AD.svd
+
+#vkra4m2nano.debug.cortex-debug.custom.device=R7FA4M2AD
+#vkra4m2nano.debug.cortex-debug.custom.interface=swd
+#vkra4m2nano.debug.cortex-debug.custom.runToEntryPoint=setup
+
+##############################################################
+### VK Boards END ###
 ##############################################################
 
 minima.name=Arduino UNO R4 Minima
