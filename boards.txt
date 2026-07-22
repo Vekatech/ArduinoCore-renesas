@@ -356,3 +356,175 @@ muxto.upload.maximum_size=262144
 muxto.upload.maximum_data_size=32768
 
 ##############################################################
+### VK Boards ###
+##############################################################
+
+vknanor4.name=VK NANO R4
+vknanor4.build.core=arduino
+vknanor4.build.crossprefix=arm-none-eabi-
+vknanor4.build.compiler_path={runtime.tools.arm-none-eabi-gcc-7-2017q4.path}/bin/
+
+vknanor4.build.variant=VK_NANOR4
+vknanor4.build.mcu=cortex-m4
+vknanor4.build.architecture=cortex-m4
+vknanor4.build.fpu=-mfpu=fpv4-sp-d16
+vknanor4.build.float-abi=-mfloat-abi=hard
+
+vknanor4.build.board=vknanor4
+#vknanor4.build.usb_product="VK NANO R4"
+vknanor4.build.defines=-DF_CPU=48000000 -DARDUINO_VK_NANO_R4 -DARDUINO_UNOR4_MINIMA
+vknanor4.vid.0=0x2341
+vknanor4.pid.0=0x0074
+vknanor4.vid.1=0x2341
+vknanor4.pid.1=0x0374
+vknanor4.upload_port.0.vid=0x2341
+vknanor4.upload_port.0.pid=0x0074
+vknanor4.upload_port.1.vid=0x2341
+vknanor4.upload_port.1.pid=0x0374
+
+vknanor4.compiler.fsp.defines={build.variant.path}/defines.txt
+vknanor4.compiler.fsp.ldflags={build.variant.path}/ldflags.txt
+vknanor4.compiler.fsp.cflags=-mthumb "@{compiler.fsp.defines}"
+vknanor4.compiler.fsp.cxxflags=-mthumb "@{compiler.fsp.defines}"
+vknanor4.compiler.tinyusb.cflags=-DCFG_TUSB_MCU=OPT_MCU_RAXXX
+vknanor4.compiler.tinyusb.cxxflags=-DCFG_TUSB_MCU=OPT_MCU_RAXXX
+vknanor4.compiler.fsp.includes={build.variant.path}/includes.txt
+vknanor4.compiler.fsp.extra_ldflags=--specs=nano.specs -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys
+vknanor4.compiler.fsp="{build.variant.path}/libs/libfsp.a"
+
+vknanor4.upload.tool=dfu-util
+vknanor4.upload.tool.default=dfu-util
+vknanor4.upload.protocol=
+vknanor4.upload.transport=
+vknanor4.upload.vid=0x2341
+vknanor4.upload.pid=0x0374
+vknanor4.upload.address=0x00010000
+vknanor4.upload.interface=0
+vknanor4.upload.use_1200bps_touch=false
+vknanor4.upload.wait_for_upload_port=false
+vknanor4.upload.native_usb=true
+vknanor4.upload.maximum_size=196608
+vknanor4.upload.maximum_data_size=32768
+
+vknanor4.debug.server.openocd.scripts.0=interface/{programmer.protocol}.cfg
+vknanor4.debug.server.openocd.scripts.1={programmer.transport_script}
+vknanor4.debug.server.openocd.scripts.2={runtime.platform.path}/debugger/R7FA4M1AB.cfg
+vknanor4.debug.svd_file={runtime.platform.path}/svd/R7FA4M1AB.svd
+
+##############################################################
+
+vkra4m2nano.name=VK-RA4M2-NANO
+vkra4m2nano.build.core=arduino
+vkra4m2nano.build.crossprefix=arm-none-eabi-
+vkra4m2nano.build.compiler_path={runtime.tools.arm-none-eabi-gcc-7-2017q4.path}/bin/
+
+vkra4m2nano.build.variant=VK_RA4M2_NANO
+vkra4m2nano.build.mcu=cortex-m33
+vkra4m2nano.build.architecture=cortex-m33
+vkra4m2nano.build.fpu=-mfpu=fpv5-sp-d16
+vkra4m2nano.build.float-abi=-mfloat-abi=hard
+
+vkra4m2nano.build.board=vkra4m2nano
+vkra4m2nano.build.defines=-DF_CPU=100000000 -DARDUINO_VK_RA4M2_NANO
+vkra4m2nano.vid.0=0x2341
+vkra4m2nano.pid.0=0x0069
+vkra4m2nano.vid.1=0x2341
+vkra4m2nano.pid.1=0x0369
+vkra4m2nano.upload_port.0.vid=0x2341
+vkra4m2nano.upload_port.0.pid=0x0069
+vkra4m2nano.upload_port.1.vid=0x2341
+vkra4m2nano.upload_port.1.pid=0x0369
+
+vkra4m2nano.compiler.fsp.defines={build.variant.path}/defines.txt
+vkra4m2nano.compiler.fsp.ldflags={build.variant.path}/ldflags.txt
+vkra4m2nano.compiler.fsp.cflags=-mthumb "@{compiler.fsp.defines}"
+vkra4m2nano.compiler.fsp.cxxflags=-mthumb "@{compiler.fsp.defines}"
+vkra4m2nano.compiler.tinyusb.cflags=-DCFG_TUSB_MCU=OPT_MCU_RAXXX
+vkra4m2nano.compiler.tinyusb.cxxflags=-DCFG_TUSB_MCU=OPT_MCU_RAXXX
+vkra4m2nano.compiler.fsp.includes={build.variant.path}/includes.txt
+vkra4m2nano.compiler.fsp.extra_ldflags=-lstdc++ -lsupc++ -lm -lc -lgcc -lnosys
+vkra4m2nano.compiler.fsp="{build.variant.path}/libs/libfsp.a"
+
+vkra4m2nano.upload.tool=dfu-util
+vkra4m2nano.upload.tool.default=dfu-util
+vkra4m2nano.upload.protocol=
+vkra4m2nano.upload.transport=
+vkra4m2nano.upload.vid=0x2341
+vkra4m2nano.upload.pid=0x0369
+vkra4m2nano.upload.address=0x00010000
+vkra4m2nano.upload.interface=0
+vkra4m2nano.upload.use_1200bps_touch=false
+vkra4m2nano.upload.wait_for_upload_port=false
+vkra4m2nano.upload.native_usb=true
+vkra4m2nano.upload.maximum_size=458752
+vkra4m2nano.upload.maximum_data_size=131072
+
+vkra4m2nano.debug.server.openocd.scripts.0=interface/{programmer.protocol}.cfg
+vkra4m2nano.debug.server.openocd.scripts.1={programmer.transport_script}
+vkra4m2nano.debug.server.openocd.scripts.2={runtime.platform.path}/debugger/R7FA4M2AD.cfg
+vkra4m2nano.debug.svd_file={runtime.platform.path}/svd/R7FA4M2AD.svd
+
+#vkra4m2nano.debug.cortex-debug.custom.device=R7FA4M2AD
+#vkra4m2nano.debug.cortex-debug.custom.interface=swd
+#vkra4m2nano.debug.cortex-debug.custom.runToEntryPoint=setup
+
+##############################################################
+
+vkra4m2femto.name=VK-RA4M2-FEMTO
+vkra4m2femto.build.core=arduino
+vkra4m2femto.build.crossprefix=arm-none-eabi-
+vkra4m2femto.build.compiler_path={runtime.tools.arm-none-eabi-gcc-7-2017q4.path}/bin/
+
+vkra4m2femto.build.variant=VK_RA4M2_FEMTO
+vkra4m2femto.build.mcu=cortex-m33
+vkra4m2femto.build.architecture=cortex-m33
+vkra4m2femto.build.fpu=-mfpu=fpv5-sp-d16
+vkra4m2femto.build.float-abi=-mfloat-abi=hard
+
+vkra4m2femto.build.board=vkra4m2femto
+vkra4m2femto.build.defines=-DF_CPU=100000000 -DARDUINO_VK_RA4M2_FEMTO
+vkra4m2femto.vid.0=0x2341
+vkra4m2femto.pid.0=0x006C
+vkra4m2femto.vid.1=0x2341
+vkra4m2femto.pid.1=0x016C
+vkra4m2femto.upload_port.0.vid=0x2341
+vkra4m2femto.upload_port.0.pid=0x006C
+vkra4m2femto.upload_port.1.vid=0x2341
+vkra4m2femto.upload_port.1.pid=0x016C
+
+vkra4m2femto.compiler.fsp.defines={build.variant.path}/defines.txt
+vkra4m2femto.compiler.fsp.ldflags={build.variant.path}/ldflags.txt
+vkra4m2femto.compiler.fsp.cflags=-mthumb "@{compiler.fsp.defines}"
+vkra4m2femto.compiler.fsp.cxxflags=-mthumb "@{compiler.fsp.defines}"
+vkra4m2femto.compiler.tinyusb.cflags=-DCFG_TUSB_MCU=OPT_MCU_RAXXX
+vkra4m2femto.compiler.tinyusb.cxxflags=-DCFG_TUSB_MCU=OPT_MCU_RAXXX
+vkra4m2femto.compiler.fsp.includes={build.variant.path}/includes.txt
+vkra4m2femto.compiler.fsp.extra_ldflags=-lstdc++ -lsupc++ -lm -lc -lgcc -lnosys
+vkra4m2femto.compiler.fsp="{build.variant.path}/libs/libfsp.a"
+
+vkra4m2femto.upload.tool=dfu-util
+vkra4m2femto.upload.tool.default=dfu-util
+vkra4m2femto.upload.protocol=
+vkra4m2femto.upload.transport=
+vkra4m2femto.upload.vid=0x2341
+vkra4m2femto.upload.pid=0x016C
+vkra4m2femto.upload.address=0x00010000
+vkra4m2femto.upload.interface=0
+vkra4m2femto.upload.use_1200bps_touch=false
+vkra4m2femto.upload.wait_for_upload_port=false
+vkra4m2femto.upload.native_usb=true
+vkra4m2femto.upload.maximum_size=458752
+vkra4m2femto.upload.maximum_data_size=131072
+
+vkra4m2femto.debug.server.openocd.scripts.0=interface/{programmer.protocol}.cfg
+vkra4m2femto.debug.server.openocd.scripts.1={programmer.transport_script}
+vkra4m2femto.debug.server.openocd.scripts.2={runtime.platform.path}/debugger/R7FA4M2AD.cfg
+vkra4m2femto.debug.svd_file={runtime.platform.path}/svd/R7FA4M2AD.svd
+
+#vkra4m2femto.debug.cortex-debug.custom.device=R7FA4M2AD
+#vkra4m2femto.debug.cortex-debug.custom.interface=swd
+#vkra4m2femto.debug.cortex-debug.custom.runToEntryPoint=setup
+
+##############################################################
+### VK Boards END ###
+##############################################################
