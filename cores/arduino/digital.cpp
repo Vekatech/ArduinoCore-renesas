@@ -10,10 +10,24 @@ void pinMode(pin_size_t pin, const PinMode mode) {
 			R_IOPORT_PinCfg(NULL, g_pin_cfg[pin].pin, IOPORT_CFG_PORT_DIRECTION_INPUT | IOPORT_CFG_PULLUP_ENABLE);
 			break;
 		case OUTPUT:
+			#if defined(ARDUINO_VK_RA4M2_FEMTO)
+				if (pin == LED_BUILTIN)
+					R_IOPORT_PinCfg(NULL, g_pin_cfg[pin].pin, IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_NMOS_ENABLE);
+				else
+					R_IOPORT_PinCfg(NULL, g_pin_cfg[pin].pin, IOPORT_CFG_PORT_DIRECTION_OUTPUT);
+			#else
 			R_IOPORT_PinCfg(NULL, g_pin_cfg[pin].pin, IOPORT_CFG_PORT_DIRECTION_OUTPUT);
+			#endif
 			break;
 		case OUTPUT_OPENDRAIN:
+			#if defined(ARDUINO_VK_RA4M2_FEMTO)
+				if (pin == LED_BUILTIN)
+					R_IOPORT_PinCfg(NULL, g_pin_cfg[pin].pin, IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_NMOS_ENABLE);
+				else
+					R_IOPORT_PinCfg(NULL, g_pin_cfg[pin].pin, IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_PMOS_ENABLE);
+			#else
 			R_IOPORT_PinCfg(NULL, g_pin_cfg[pin].pin, IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_PMOS_ENABLE);
+			#endif
 			break;
 		}
 }
