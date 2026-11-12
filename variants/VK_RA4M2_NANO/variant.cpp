@@ -1,5 +1,6 @@
 #include "Arduino.h"
 #include "pinmux.inc"
+#include "FspTimer.h"
 
 extern "C" const PinMuxCfg_t g_pin_cfg[] = {
   // Digital
@@ -9,8 +10,8 @@ extern "C" const PinMuxCfg_t g_pin_cfg[] = {
   { BSP_IO_PORT_01_PIN_04,  P104 }, /* (3)   D3                 |  IRQ1 / PWM1_B                       */
   { BSP_IO_PORT_01_PIN_03,  P103 }, /* (4)   D4                 |  CAN0_TX / PWM2_A                    */
   { BSP_IO_PORT_01_PIN_02,  P102 }, /* (5)   D5                 |  CAN0_RX / PWM2_B                    */
-  { BSP_IO_PORT_01_PIN_06,  P106 }, /* (6)   D6                 |                                      */
-  { BSP_IO_PORT_01_PIN_07,  P107 }, /* (7)   D7                 |                                      */
+  { BSP_IO_PORT_01_PIN_06,  P106 }, /* (6)   D6                 |  PWM0_B                              */
+  { BSP_IO_PORT_01_PIN_07,  P107 }, /* (7)   D7                 |  PWM0_A                              */
   { BSP_IO_PORT_03_PIN_04,  P304 }, /* (8)   D8                 |  IRQ9 / PWM7_A                       */
   { BSP_IO_PORT_03_PIN_03,  P303 }, /* (9)   D9                 |         PWM7_B                       */
   { BSP_IO_PORT_01_PIN_12,  P112 }, /* (10)  D10                |  SS0 / PWM3_B                        */
@@ -73,4 +74,8 @@ void initVariant() {
 
   // bootloader configures LED_BUILTIN as output, deconfigure it to avoid spurious signals
   pinMode(LED_BUILTIN, INPUT);
+
+  // GPT0 drives only D6/D7 (P106/P107); keep it out of get_available_timer()
+  // so tone()/Servo/SoftwareSerial do not take it before analogWrite(D6/D7).
+  FspTimer::set_initial_timer_channel_as_pwm(GPT_TIMER, GET_CHANNEL(getPinCfgs(7, PIN_CFG_REQ_PWM)[0]));
 }
